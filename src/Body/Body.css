@@ -1,5 +1,194 @@
-.body-container{
-    height: 95vh;
-    width: 100%;
-    background-color: var(--main-s-color);
+.body-container {
+  height: 95vh;
+  width: 100%;
 }
+.body-content {
+  height: 100%;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.search {
+  width: 65%;
+  height: 7%;
+  background-color: var(--main-s-color);
+  border-radius: 10px;
+  border: none;
+}
+.search > input {
+  border: 20px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: transparent;
+  color: var(--second-text-color);
+  font-size: large;
+  padding: 1em;
+}
+
+.body-content-detail {
+  height: 93%;
+  display: flex;
+  flex-direction: row;
+}
+.left-body {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+  justify-content: space-between;
+}
+
+.right-body {
+  flex: 1;
+  background-color: var(--main-s-color);
+  border-radius: 20px;
+  margin: 0 1%;
+}
+
+.left-cards {
+}
+
+.write-up {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 2em;
+}
+
+.write-up-one > h2{
+    font-size: xx-large;
+    color: var(--text-color);
+}
+
+.write-up-one > p{
+    font-size: small;
+    color: var(--second-text-color);
+}
+
+.write-up-two > h1{
+    font-size: 3em;
+    color: var(--text-color);
+}
+.left-cards {
+  flex: 1;
+  background-color: var(--main-s-color);
+  border-radius: 20px;
+  margin: 1% 0;
+}
+
+.symbol > img {
+  width: 60%;
+}
+
+.left-cards.first {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+}
+
+.left-cards.second{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    
+}
+
+.left-cards.second> *{
+    width: 90%;
+}
+.left-cards.second> h5{
+    margin-top: 3%;
+    margin-left: 4%;
+}
+
+.today-forcast-content{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.today-forcast-info{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 1px solid var(--side-border-color);
+}
+
+.today-forcast-content div:last-of-type{
+    border-right: none;
+
+}
+
+.today-forcast-info > img{
+    width: 25%;
+}
+
+.left-cards.third{
+
+}
+
+.air-condition-header{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2% auto 0;
+}
+
+.air-condition-header> button{
+    padding: 1px 15px;
+    border: none;
+    border-radius: 20px;
+    color: var(--text-color);
+    background-color: orange;
+    font-size: large;
+}
+
+.air-condition-content{
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+   align-items: start;
+}
+
+.air-condition-content-d{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1%;
+
+}
+
+.air-condition-details{
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  
+}
+
+.air-condition-icon{
+    font-size: 1.5em;
+    margin-right: 10px;
+    
+} 
