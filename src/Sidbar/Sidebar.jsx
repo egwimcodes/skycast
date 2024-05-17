@@ -15,8 +15,8 @@ export default function Sidebar() {
                     </div>
                     <ul className="sidbar-nav">
                         <a href="">
-                            <li className="nav-items">
-                                <TiWeatherPartlySunny className='nav-icons' />
+                            <li className="nav-items active">
+                                <TiWeatherPartlySunny className='nav-icons active' />
                                 <h4>Weather</h4>
                             </li>
                         </a>

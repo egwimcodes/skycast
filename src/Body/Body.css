@@ -368,5 +368,8 @@ padding: 1em;
 
 .right-body {
   padding-bottom: 10%;
+  margin-bottom: 100px;
+  background-color: red;
 }
+
 }

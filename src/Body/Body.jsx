@@ -4,6 +4,8 @@ import { FaTemperatureThreeQuarters } from "react-icons/fa6";
 import { TbWind } from "react-icons/tb";
 import { FaDroplet } from "react-icons/fa6";
 import { FaSun } from "react-icons/fa";
+import Footer from "../Footer/Footer"
+
 
 export default function Body() {
   return (

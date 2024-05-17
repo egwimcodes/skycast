@@ -47,3 +47,7 @@
 .nav-items, .nav-icons{
   color: var(--second-text-color);
 }
+
+.active{
+  color: orange;
+}
