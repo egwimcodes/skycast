@@ -8,6 +8,14 @@ import './Sidebar.css'
 export default function Sidebar() {
 
     const [active, setactive] = useState(false)
+    switch (key) {
+        case value:
+            
+            break;
+    
+        default:
+            break;
+    }
 
 
     useEffect(() => {
