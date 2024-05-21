@@ -1,5 +1,5 @@
 /* Side Bar styling */
-.sidebar{
+.sidebar {
   height: 95vh;
   width: 80px;
   background-color: var(--main-s-color);
@@ -10,48 +10,49 @@
   align-items: center;
 }
 
-.sidbar-content{
+.sidbar-content {
   width: 80%;
 }
 
-.sidbar-logo{
+.sidbar-logo {
   margin: 30% 0 70%;
 }
 
-.sidbar-logo> img {
+.sidbar-logo > img {
   width: 100%;
 }
-.sidbar-nav{
- height: 100%;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
+.sidbar-nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.nav-items{
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
+.nav-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-items{
- cursor: pointer;
+.nav-items {
+  cursor: pointer;
 }
 
-.nav-items > h4{
+.nav-items > h4 {
   font-size: small;
 }
 
-.nav-icons{
+.nav-icons {
   font-size: large;
   margin-bottom: 15%;
 }
 
-.nav-items, .nav-icons{
+.nav-items,
+.nav-icons {
   color: var(--second-text-color);
 }
 
-.active{
+.active {
   color: orange;
 }
