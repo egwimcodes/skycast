@@ -8,6 +8,10 @@
   margin: 0 auto;
 }
 
+.air-condition-icon{
+   color: orange;
+}
+
 .search {
   width: 65%;
   height: 7%;
