@@ -8,31 +8,31 @@ import Footer from "../Footer/Footer"
 
 
 export default function Body() {
-
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
   useEffect(() => {
-
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      setLatitude(latitude);
+      setLongitude(longitude);
     }
-
     function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
+      console.log(`ERROR(${err.code}): ${err.message}`);
     }
 
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(success, error);
     }
-    function getLocation() {
-      switch (getCity) {
 
-      }
-    }
-  })
+  }, [])
 
+  useEffect(() => {
+    
+  }, [latitude, longitude]);
+  
   const [current, setCurrent] = useState(`lon=${6.788}&lat=${6.1388}`)
   const [formatted, setFormatted] = useState('')
   const [param, setParam] = useState('lon')
