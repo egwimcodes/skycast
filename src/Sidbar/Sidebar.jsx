@@ -8,26 +8,6 @@ import './Sidebar.css'
 export default function Sidebar() {
 
     const [active, setactive] = useState('weather')
-
-    switch (active) {
-        case 'weather':
-            console.log('weather')
-            break;
-        case 'cities':
-            console.log('cities')
-            break;
-        case 'map':
-            console.log('map')
-            break;
-        case 'settings':
-            console.log('settings')
-            break;
-            
-    }
-
-
-    useEffect(() => {
-    })
     return (
         <>
             <div className="sidebar">

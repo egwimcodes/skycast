@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Body.css'
 import { FaTemperatureThreeQuarters } from "react-icons/fa6";
 import { TbWind } from "react-icons/tb";
@@ -8,12 +8,69 @@ import Footer from "../Footer/Footer"
 
 
 export default function Body() {
+
+
+  useEffect(() => {
+
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+    function getLocation() {
+      switch (getCity) {
+
+      }
+    }
+  })
+
+  const [current, setCurrent] = useState(`lon=${6.788}&lat=${6.1388}`)
+  const [formatted, setFormatted] = useState('')
+  const [param, setParam] = useState('lon')
+  const [getCity, setGetCity] = useState('6.788');
+  const [data, setData] = useState({})
+  
+  
+  
+
+  const location = data.name
+
+
+  const options = { method: 'GET' };
+
+  useEffect(() => {
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?${current}&appid=bc48158e57383356400a8467be70f78d`, options)
+      .then(response => response.json())
+      .then(data => setData(data))
+      .catch(err => console.error(err));
+  }, [])
+
+    
+
+
+
+ 
+
+  // `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=bc48158e57383356400a8467be70f78d&`
+  
+
+
   return (
     <>
       <div className="body-container">
         <div className="body-content">
           <div className="search">
-            <input type="text" placeholder='Search for a cities....' />
+            <input type="text" placeholder='Search for a cities....' onChange={(e) => setCurrent(e.target.value)} />
           </div>
           <div className="body-content-detail">
             <div className="left-body">
@@ -21,7 +78,7 @@ export default function Body() {
 
                 <div className="write-up">
                   <div className="write-up-one">
-                    <h2>Madrid</h2>
+                    <h2>{data.name}</h2>
                     <p>Chance of rain is 60%</p></div>
 
                   <div className="write-up-two">
