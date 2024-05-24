@@ -18,6 +18,10 @@
   background-color: var(--main-s-color);
   border-radius: 10px;
   border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
 }
 .search > input {
   border: 20px;
@@ -32,6 +36,10 @@
   padding: 1em;
 }
 
+.search>.search-icon{
+  font-size: xx-large;
+  margin: 0 2%;
+}
 .body-content-detail {
   height: 93%;
   display: flex;

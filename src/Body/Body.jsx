@@ -4,73 +4,57 @@ import { FaTemperatureThreeQuarters } from "react-icons/fa6";
 import { TbWind } from "react-icons/tb";
 import { FaDroplet } from "react-icons/fa6";
 import { FaSun } from "react-icons/fa";
+import { FcSearch } from "react-icons/fc";
 import Footer from "../Footer/Footer"
 
 
 export default function Body() {
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-
-  useEffect(() => {
-    function success(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      setLatitude(latitude);
-      setLongitude(longitude);
-    }
-    function error(err) {
-      console.log(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-
-  }, [])
-
-  useEffect(() => {
-    
-  }, [latitude, longitude]);
-  
-  const [current, setCurrent] = useState(`lon=${6.788}&lat=${6.1388}`)
-  const [formatted, setFormatted] = useState('')
-  const [param, setParam] = useState('lon')
-  const [getCity, setGetCity] = useState('6.788');
-  const [data, setData] = useState({})
-  
-  
-  
-
-  const location = data.name
-
-
-  const options = { method: 'GET' };
-
-  useEffect(() => {
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?${current}&appid=bc48158e57383356400a8467be70f78d`, options)
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(err => console.error(err));
-  }, [])
-
-    
-
-
-
+  const [nameData, setNameData] = useState()
+  const [data, setData] = useState()
+  const [nameparam, setNameParam] = useState('nnewi')
+  const [param, setParam] = useState('')
+  const [value, setValue] = useState('')
+  const [iderror, setIdError] = useState()
  
+  useEffect(() => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
+      .then((res) => res.json())
+      .then((data) => paramChoice(1, data))
+      .catch((error) => setIdError(true))
 
-  // `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=bc48158e57383356400a8467be70f78d&`
-  
+  }, [])
 
+  useEffect(() => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${param}&appid=bc48158e57383356400a8467be70f78d`)
+      .then((res) => res.json())
+      .then((data) => paramChoice(2, data))
+      .catch((error) => setIdError(true) )
+  }, [])
+
+  const paramChoice = (id, data) => {
+    if (value === '') {
+      if (
+        id === 1 
+      ) {
+        if (iderror === 1) {
+          console.log('Error on one')
+        } else {
+          console.log('I am one')
+        }
+      }
+   }
+  }
+  console.log(data)
+  console.log('Name ', nameData)
 
   return (
     <>
       <div className="body-container">
         <div className="body-content">
           <div className="search">
-            <input type="text" placeholder='Search for a cities....' onChange={(e) => setCurrent(e.target.value)} />
+            <input type="text" placeholder='Search for a cities....' 
+               />
+            <FcSearch className='search-icon' />
           </div>
           <div className="body-content-detail">
             <div className="left-body">
@@ -78,7 +62,7 @@ export default function Body() {
 
                 <div className="write-up">
                   <div className="write-up-one">
-                    <h2>{data.name}</h2>
+                    <h2>{ }</h2>
                     <p>Chance of rain is 60%</p></div>
 
                   <div className="write-up-two">
