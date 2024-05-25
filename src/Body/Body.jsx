@@ -9,44 +9,19 @@ import Footer from "../Footer/Footer"
 
 
 export default function Body() {
-  const [nameData, setNameData] = useState()
-  const [data, setData] = useState()
+  const [data, setData] = useState('')
   const [nameparam, setNameParam] = useState('nnewi')
   const [param, setParam] = useState('')
   const [value, setValue] = useState('')
-  const [iderror, setIdError] = useState()
  
   useEffect(() => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
       .then((res) => res.json())
-      .then((data) => paramChoice(1, data))
-      .catch((error) => setIdError(true))
+      .then((data) => setData(data))
+      .catch((error) => console.warn(error))
 
   }, [])
-
-  useEffect(() => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${param}&appid=bc48158e57383356400a8467be70f78d`)
-      .then((res) => res.json())
-      .then((data) => paramChoice(2, data))
-      .catch((error) => setIdError(true) )
-  }, [])
-
-  const paramChoice = (id, data) => {
-    if (value === '') {
-      if (
-        id === 1 
-      ) {
-        if (iderror === 1) {
-          console.log('Error on one')
-        } else {
-          console.log('I am one')
-        }
-      }
-   }
-  }
-  console.log(data)
-  console.log('Name ', nameData)
-
+  
   return (
     <>
       <div className="body-container">
@@ -62,7 +37,7 @@ export default function Body() {
 
                 <div className="write-up">
                   <div className="write-up-one">
-                    <h2>{ }</h2>
+                    <h2>{data.name}</h2>
                     <p>Chance of rain is 60%</p></div>
 
                   <div className="write-up-two">
