@@ -12,7 +12,6 @@ export default function Body() {
   const [data, setData] = useState('')
   const [nameparam, setNameParam] = useState('nnewi')
   const [param, setParam] = useState('')
-  const [value, setValue] = useState('')
  
   useEffect(() => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
