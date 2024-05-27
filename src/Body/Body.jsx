@@ -29,7 +29,6 @@ export default function Body() {
         console.log(response_data)
       }
     } catch (error) {
-      console.log(error)
 
     }
   }, [])
