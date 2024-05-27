@@ -11,22 +11,37 @@ import Footer from "../Footer/Footer"
 export default function Body() {
   const [data, setData] = useState('')
   const [nameparam, setNameParam] = useState('nnewi')
- 
-  useEffect(() => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((error) => console.warn(error))
 
+  // useEffect(() => {
+  //   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data))
+  //     .catch((error) => console.warn(error))
+
+  // }, [])
+  useEffect(() => {
+
+    try {
+      const currentWeather = async () => {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
+        const response_data = await response.json()
+        setData(response_data)
+        console.log(response_data)
+      }
+    } catch (error) {
+      console.log(error)
+
+    }
   }, [])
-  
+
+
   return (
     <>
       <div className="body-container">
         <div className="body-content">
           <div className="search">
-            <input type="text" placeholder='Search for a cities....' 
-               />
+            <input type="text" placeholder='Search for a cities....'
+            />
             <FcSearch className='search-icon' />
           </div>
           <div className="body-content-detail">
