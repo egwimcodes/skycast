@@ -23,7 +23,7 @@ export default function Body() {
 
     try {
       const currentWeather = async () => {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d&units=metric`)
         const response_data = await response.json()
         setData(response_data)
         console.log(response_data)
