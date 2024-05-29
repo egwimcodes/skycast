@@ -13,7 +13,7 @@ export default function Sidebar() {
             <div className="sidebar">
                 <div className="sidbar-content">
                     <div className="sidbar-logo">
-                        <img src="skycast-logo.png" alt="" />
+                        <img src="weather-main.png" alt="" />
                     </div>
                     <ul className="sidbar-nav">
                         <a>

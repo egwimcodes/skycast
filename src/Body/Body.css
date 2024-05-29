@@ -91,8 +91,11 @@
   margin: 1% 0;
 }
 
+.symbol{
+  width: 30%;
+}
 .symbol > img {
-  width: 60%;
+  width: 50%;
 }
 
 .left-cards.first {
@@ -115,9 +118,37 @@
 .left-cards.second > * {
   width: 90%;
 }
-.left-cards.second > h5 {
+.forcast-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 3%;
   margin-left: 4%;
+}
+
+.sunset, .sunrise{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sun_set, .sun_rise{
+  font-size: xx-large;
+  margin-right: 10px;
+}
+
+.sun_rise{
+  color: orange;
+}
+
+.sun_set{
+  color: var(--second-text-color);
+}
+.sun-detail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .today-forcast-content {
@@ -267,6 +298,9 @@
     border: none;
   }
 
+  .symbol > img {
+    width: 100%;
+  }
   .body-content-detail {
     height: max-content;
     display: flex;
@@ -316,6 +350,16 @@
 }
 
 @media screen and (min-width: 300px) and (max-width: 550px) {
+.sunset, .sunrise{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sun-detail{
+  align-items: center;
+  text-align: center;
+}
   .today-forcast-content {
     width: 100%;
     height: 80%;
@@ -368,6 +412,5 @@
   .right-body {
     padding-bottom: 10%;
     margin-bottom: 100px;
-    background-color: red;
   }
 }

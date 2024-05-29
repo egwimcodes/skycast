@@ -1,0 +1,47 @@
+{
+  "coord": {
+    "lon": 6.9148,
+    "lat": 6.0199
+  },
+  "weather": [
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "broken clouds",
+      "icon": "04d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 31.6,
+    "feels_like": 36.16,
+    "temp_min": 31.6,
+    "temp_max": 31.6,
+    "pressure": 1013,
+    "humidity": 60,
+    "sea_level": 1013,
+    "grnd_level": 995
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 2.48,
+    "deg": 237,
+    "gust": 2.43
+  },
+  "clouds": {
+    "all": 83
+  },
+  "dt": 1716979881,
+  "sys": {
+    "country": "NG",
+    "sunrise": 1716959805,
+    "sunset": 1717004590
+  },
+  "timezone": 3600,
+  "id": 2328765,
+  "name": "Nnewi",
+  "cod": 200
+}
+
+
+https://api.openweathermap.org/data/2.5/onecall?lat=6.0199&lon=6.9148&exclude=current,minutely,hourly,alerts&appid=1fa9ff4126d95b8db54f3897a208e91c&units=metric

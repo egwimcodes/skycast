@@ -5,41 +5,87 @@ import { TbWind } from "react-icons/tb";
 import { FaDroplet } from "react-icons/fa6";
 import { FaSun } from "react-icons/fa";
 import { FcSearch } from "react-icons/fc";
+import { GiSunrise, GiSunset } from "react-icons/gi";
 import Footer from "../Footer/Footer"
 
 
 export default function Body() {
+  const url_query = 'https://api.openweathermap.org/data/2.5/weather?'
+  const key = 'appid=bc48158e57383356400a8467be70f78d'
+  const units = 'units=metric'
   const [data, setData] = useState('')
   const [nameparam, setNameParam] = useState('nnewi')
+  const [name, setName] = useState('q=' + nameparam)
+  const [currentDayTime, setCurrentDayTime] = useState('')
+  const [WeatherIcon, setWeatherIcon] = useState('')
 
-  // useEffect(() => {
-  //   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d`)
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data))
-  //     .catch((error) => console.warn(error))
-
-  // }, [])
   useEffect(() => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d&units=metric`)
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((error) => console.warn(error))
 
-    try {
-      const currentWeather = async () => {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d&units=metric`)
-        const response_data = await response.json()
-        setData(response_data)
-        console.log(response_data)
-      }
-    } catch (error) {
-     console.warn(error)
+  }, [nameparam])
+
+
+
+  const setNameParams = (e) => {
+    setNameParam(e.target.value)
+  }
+  
+
+  function formatUnixTimestamp(unixTimestamp) {
+    const date = new Date(unixTimestamp * 1000);
+    const options = {
+      hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
+    };
+    return date.toLocaleString('en-US', options);
+  }
+  
+  useEffect(() => {
+    const updateDateTime = () => {
+      const date = new Date();
+      const options = {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
+      };
+      setCurrentDayTime(date.toLocaleString('en-US', options));
+    };
+
+    // Initial call to set the current time immediately
+    updateDateTime();
+
+    // Set interval to update the time every second
+    const intervalId = setInterval(updateDateTime, 1000);
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    switch (data.cod === 200 && data.weather[0].main) {
+      case 'Clouds':
+        setWeatherIcon('cloud.png')
+        break;
+      case 'Clear':
+        setWeatherIcon('sunny.png')
+        break;
+      case 'Rain':
+        setWeatherIcon('rain.png')
+        break;
+      case 'Snow':
+        setWeatherIcon('snow.png')
+        break;
+      default:
+        setWeatherIcon('sun.png')
     }
-  }, [])
-
-
+  }, [data])
   return (
     <>
       <div className="body-container">
         <div className="body-content">
           <div className="search">
-            <input type="text" placeholder='Search for a cities....'
+            <input type="text" placeholder='Search for a cities....' onChange={(e) => setNameParams(e)}
             />
             <FcSearch className='search-icon' />
           </div>
@@ -50,34 +96,40 @@ export default function Body() {
                 <div className="write-up">
                   <div className="write-up-one">
                     <h2>{data.name}</h2>
-                    <p>Chance of rain is 60%</p></div>
+                    <p>{data.cod == 200 && currentDayTime}</p></div>
 
                   <div className="write-up-two">
-                    <h1>31<sup>o</sup></h1>
+                    <h1>{data.cod === 200 && data.main.temp.toFixed()}<sup>oC</sup> { data.cod === 200 && data.weather[0].main}</h1>
                   </div>
                 </div>
                 <div className="symbol">
-                  <img src="sun.png" alt="" />
+                  <img src={data.cod == 200 ? WeatherIcon : 'sun.png'} alt="" />
                 </div>
 
               </div>
               <div className="left-cards second">
-                <h5>Todays FORECAST</h5>
+                <div className="forcast-header">
+                  <h5>Todays FORECAST</h5>
+                    <div className="sunrise">
+                      <GiSunrise className='sun_rise'/>
+                      <div className="sun-detail">
+                        <p>Sunrise</p>
+                        <h6>{data.cod == 200 && formatUnixTimestamp(data.sys.sunrise)}</h6>
+                      </div>
+                    </div>
+                  <div className="sunset">
+                    <GiSunset className='sun_set'/>
+                    <div className="sun-detail">
+                      <p>Sunset</p>
+                      <h6>{data.cod == 200 && formatUnixTimestamp(data.sys.sunset)}</h6>
+                    </div>
+                  </div>
+                </div>
                 <div className="today-forcast-content">
                   <div className="today-forcast-info">
                     <p>6:00 AM</p>
                     <img src="sun.png" alt="" />
-                    <h5>25 <sup>o</sup></h5>
-                  </div>
-                  <div className="today-forcast-info">
-                    <p>6:00 AM</p>
-                    <img src="sun.png" alt="" />
-                    <h5>25 <sup>o</sup></h5>
-                  </div>
-                  <div className="today-forcast-info">
-                    <p>6:00 AM</p>
-                    <img src="sun.png" alt="" />
-                    <h5>25 <sup>o</sup></h5>
+                    <h5>{data.cod === 200 && data.main.temp} <sup>o</sup></h5>
                   </div>
                   <div className="today-forcast-info">
                     <p>6:00 AM</p>
@@ -107,21 +159,21 @@ export default function Body() {
                       <FaTemperatureThreeQuarters className='air-condition-icon' />
                       <div className="icon-text">
                         <p>Real Feel</p>
-                        <h2>30<sup>o</sup></h2>
+                        <h2>{data.cod === 200 && data.main.temp.toFixed()}<sup>o</sup></h2>
                       </div>
                     </div>
                     <div className="air-condition-details">
                       <TbWind className='air-condition-icon' />
                       <div className="icon-text">
                         <p>Wind</p>
-                        <h2>0.2 km/h</h2>
+                        <h2>{data.cod === 200 && data.wind.speed.toFixed()} km/h</h2>
                       </div>
                     </div>
                     <div className="air-condition-details">
                       <FaDroplet className='air-condition-icon' />
                       <div className="icon-text">
                         <p>Chance of rain</p>
-                        <h2>0%</h2>
+                        <h2>{data.cod === 200 && data.main.humidity.toFixed()}%</h2>
                       </div>
                     </div>
                     <div className="air-condition-details">
