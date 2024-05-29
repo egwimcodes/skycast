@@ -128,22 +128,22 @@ export default function Body() {
                 <div className="today-forcast-content">
                   <div className="today-forcast-info">
                     <p>6:00 AM</p>
-                    <img src="sun.png" alt="" />
+                    <img src="rain.png" alt="" />
                     <h5>{data.cod === 200 && data.main.temp} <sup>o</sup></h5>
                   </div>
                   <div className="today-forcast-info">
                     <p>6:00 AM</p>
-                    <img src="sun.png" alt="" />
+                    <img src="rain.png" alt="" />
                     <h5>25 <sup>o</sup></h5>
                   </div>
                   <div className="today-forcast-info">
                     <p>6:00 AM</p>
-                    <img src="sun.png" alt="" />
+                    <img src="cloud.png" alt="" />
                     <h5>25 <sup>o</sup></h5>
                   </div>
                   <div className="today-forcast-info">
                     <p>6:00 AM</p>
-                    <img src="sun.png" alt="" />
+                    <img src="clear.png" alt="" />
                     <h5>25 <sup>o</sup></h5>
                   </div>
                 </div>
