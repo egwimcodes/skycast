@@ -91,6 +91,15 @@
   margin: 1% 0;
 }
 
+
+.write-up-two > h1 > span {
+  font-size: medium;
+}
+.write-up-two > h1 > span > span {
+  font-size: small;
+}
+
+
 .symbol{
   width: 30%;
 }
@@ -150,6 +159,7 @@
   align-items: center;
 
 }
+
 
 .today-forcast-content {
   width: 100%;

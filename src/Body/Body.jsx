@@ -14,17 +14,25 @@ export default function Body() {
   const key = 'appid=bc48158e57383356400a8467be70f78d'
   const units = 'units=metric'
   const [data, setData] = useState('')
+  const [dataAll, setDataAll] = useState('')
   const [nameparam, setNameParam] = useState('nnewi')
+  const [hourly, setHourly] = useState({})
   const [name, setName] = useState('q=' + nameparam)
   const [currentDayTime, setCurrentDayTime] = useState('')
   const [WeatherIcon, setWeatherIcon] = useState('')
 
   useEffect(() => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nameparam}&appid=bc48158e57383356400a8467be70f78d&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=6.0199&lon=6.9148&appid=1fa9ff4126d95b8db54f3897a208e91c&units=metric`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((error) => console.warn(error))
 
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=6.0199&lon=6.9148&appid=1fa9ff4126d95b8db54f3897a208e91c&units=metric`)
+      .then((res) => res.json())
+      .then((data) => setDataAll(data))
+      .catch((error) => console.warn(error))
+
+      
   }, [nameparam])
 
 
@@ -32,7 +40,7 @@ export default function Body() {
   const setNameParams = (e) => {
     setNameParam(e.target.value)
   }
-  
+
 
   function formatUnixTimestamp(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
@@ -41,7 +49,7 @@ export default function Body() {
     };
     return date.toLocaleString('en-US', options);
   }
-  
+
   useEffect(() => {
     const updateDateTime = () => {
       const date = new Date();
@@ -80,6 +88,21 @@ export default function Body() {
         setWeatherIcon('sun.png')
     }
   }, [data])
+  useEffect(() => {
+    if (dataAll) {
+      // Create a new object to accumulate the changes
+      const newHourly = {};
+      for (let i = 0; i < 4; i++) {
+        newHourly[i] = dataAll.hourly[i];
+      }
+      // Update the state once with the accumulated changes
+      setHourly(newHourly);
+    }
+  }, [dataAll]);
+
+  useEffect(() => {
+    console.log(hourly);
+  }, [hourly]); // Log the updated state whenever 'hourly' changes
   return (
     <>
       <div className="body-container">
@@ -99,7 +122,7 @@ export default function Body() {
                     <p>{data.cod == 200 && currentDayTime}</p></div>
 
                   <div className="write-up-two">
-                    <h1>{data.cod === 200 && data.main.temp.toFixed()}<sup>oC</sup> { data.cod === 200 && data.weather[0].main}</h1>
+                    <h1>{data.cod === 200 && data.main.temp.toFixed()}<sup>oC</sup> <span>{data.cod === 200 && data.weather[0].description}<br /> <span>Feel Like {data.cod === 200 && data.main.feels_like.toFixed()}<sup>o</sup></span> </span></h1>
                   </div>
                 </div>
                 <div className="symbol">
@@ -110,15 +133,15 @@ export default function Body() {
               <div className="left-cards second">
                 <div className="forcast-header">
                   <h5>Todays FORECAST</h5>
-                    <div className="sunrise">
-                      <GiSunrise className='sun_rise'/>
-                      <div className="sun-detail">
-                        <p>Sunrise</p>
-                        <h6>{data.cod == 200 && formatUnixTimestamp(data.sys.sunrise)}</h6>
-                      </div>
+                  <div className="sunrise">
+                    <GiSunrise className='sun_rise' />
+                    <div className="sun-detail">
+                      <p>Sunrise</p>
+                      <h6>{data.cod == 200 && formatUnixTimestamp(data.sys.sunrise)}</h6>
                     </div>
+                  </div>
                   <div className="sunset">
-                    <GiSunset className='sun_set'/>
+                    <GiSunset className='sun_set' />
                     <div className="sun-detail">
                       <p>Sunset</p>
                       <h6>{data.cod == 200 && formatUnixTimestamp(data.sys.sunset)}</h6>
