@@ -13,8 +13,6 @@ export default function Body() {
   const url_query = 'https://api.openweathermap.org/data/2.5/weather?'
   const key = 'appid=bc48158e57383356400a8467be70f78d'
   const units = 'units=metric'
-  const justfor = ''
-
   const [data, setData] = useState('')
   const [dataAll, setDataAll] = useState('')
   const [nameparam, setNameParam] = useState('nnewi')
