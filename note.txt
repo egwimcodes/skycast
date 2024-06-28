@@ -44,4 +44,5 @@
 }
 
 advernce api
+with more features 
 https://api.openweathermap.org/data/2.5/onecall?lat=6.0199&lon=6.9148&exclude=current,minutely,hourly,alerts&appid=1fa9ff4126d95b8db54f3897a208e91c&units=metric
